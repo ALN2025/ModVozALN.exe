@@ -1,139 +1,140 @@
 <div align="center">
 
-# 🎙️ ModVozALN — Instalador L2Voice
+# ModVozALN — Instalador L2Voice
 
 **Mod de voz por proximidade para servidores Lineage 2**
 
-[![Versão](https://img.shields.io/badge/versão-1.9.1-7c3aed?style=for-the-badge)](https://github.com/ALN2025/ModVozALN.exe)
+[![Versão](https://img.shields.io/badge/versão-1.9.5-7c3aed?style=for-the-badge)](https://github.com/ALN2025/ModVozALN.exe)
 [![Plataforma](https://img.shields.io/badge/plataforma-Windows-0078d4?style=for-the-badge&logo=windows&logoColor=white)](https://github.com/ALN2025/ModVozALN.exe)
-[![Download](https://img.shields.io/badge/⬇️_download-ModVozALN.exe-ec4899?style=for-the-badge)](https://github.com/ALN2025/ModVozALN.exe/raw/main/ModVozALN.exe)
-[![Dev](https://img.shields.io/badge/Dev-ALN-a855f7?style=for-the-badge)](https://github.com/ALN2025)
+[![Download](https://img.shields.io/badge/download-ModVozALN.exe-ec4899?style=for-the-badge)](https://github.com/ALN2025/ModVozALN.exe/raw/main/ModVozALN.exe)
 
 **Mod De Voz Dev ⩿ A.L.N/⪀**
-
-*Instale o mod completo em poucos cliques — sem editar Java, sem mexer no Engine.dll, sem pedir source*
 
 </div>
 
 ---
 
-## 📥 Download
+## Download
 
-| Arquivo | Descrição |
-|---------|-----------|
-| [**ModVozALN.exe**](https://github.com/ALN2025/ModVozALN.exe/raw/main/ModVozALN.exe) | Instalador único (~14 MB) — **tudo já embutido** |
-
-> ⚠️ Baixe **somente** o executável. Não é necessário pasta `pack/`, código-fonte ou JARs separados.
+Baixe apenas o arquivo [**ModVozALN.exe**](https://github.com/ALN2025/ModVozALN.exe/raw/main/ModVozALN.exe). O instalador já contém os arquivos do mod — não é necessário pasta `pack/` nem código-fonte.
 
 ---
 
-## 📦 Onde vão os JARs? (`l2voice-bridge.jar` + `jedis-5.1.2.jar`)
+## Pastas no instalador
 
-Os dois JARs vão na **mesma pasta `libs` onde está o `server.jar`** (e os demais JARs do GameServer).
+Informe **quatro pastas** no instalador. Cada uma corresponde a uma seção da sua pack ou do cliente:
 
-| Tipo de pack | Pasta correta | ❌ Não coloque aqui |
-|--------------|---------------|---------------------|
-| **BrProject / L2JBR** | `Brproject_Distribution/libs/` | `game/libs/` |
-| **L2jMega / aCis** | `pack/libs/` ou `game/libs/` (onde o `.bat` aponta o `-cp`) | pasta vazia só com os JARs de voz |
-| **Qualquer revisão** | A pasta **libs** que você informar no instalador (campo 3) | — |
-
-### BrProject (uma `libs` só na raiz)
-
-```
-Brproject_Distribution/
-  libs/              ← server.jar + dependências + l2voice-bridge.jar + jedis-5.1.2.jar
-  game/              ← config, data (SEM libs aqui)
-  login/
-  voice/
-```
-
-O instalador copia os JARs para a pasta **libs** que você selecionar. No BrProject, selecione `...\Brproject_Distribution\libs`.
+| Campo | Selecione |
+|-------|-----------|
+| **Game** | Pasta do GameServer (`config`, `data`) |
+| **Libs** | Pasta onde ficam os JARs do servidor |
+| **Voice** | Pasta do voice-server na raiz da pack |
+| **System** | Pasta `system` do cliente L2 |
 
 ---
 
-## ✨ O que o instalador faz
+## Arquivos instalados em cada pasta
 
-| Componente | Instala automaticamente |
-|------------|-------------------------|
-| 🖥️ **GameServer** | `l2voice-bridge.jar`, `jedis-5.1.2.jar` → pasta **libs** informada |
-| ⚙️ **Config** | `l2jalnvoice.properties`, HTML `voip-link.htm` → pasta **game** |
-| 🔧 **Scripts** | `INICIAR-GS-COM-VOZ.bat` + `-javaagent` nos `.bat` existentes |
-| 🎮 **Cliente L2** | `l2voice.dll`, `voice.ini`, `L2VoiceInject.exe` → pasta **system** |
-| 📡 **Voice-server** | binários do voice (se embutidos no pack) → pasta **voice** |
+### Game (`config` + `data`)
 
-**Sem editar `.java`** — o bridge usa `-javaagent` e reflexão no JAR do GS.
+| Arquivo | Destino |
+|---------|---------|
+| `l2jalnvoice.properties` | `game/config/custom/` |
+| `voip-link.htm` | `game/data/html/mods/voip/` |
+| `INICIAR-GS-COM-VOZ.bat` | `game/` (script de subida com javaagent) |
+
+O instalador também injeta `-javaagent:l2voice-bridge.jar` nos `.bat` de GameServer que já existirem.
+
+### Libs (JARs do servidor)
+
+| Arquivo | Destino |
+|---------|---------|
+| `l2voice-bridge.jar` | pasta **libs** informada |
+| `jedis-5.1.2.jar` | pasta **libs** informada |
+
+Coloque na **mesma pasta libs** onde já está o JAR principal do GameServer (o que o `.bat` usa no `-cp`). Não crie uma pasta libs separada só com os JARs do mod.
+
+### Voice (raiz da pack)
+
+| Arquivo | Destino |
+|---------|---------|
+| `L2VoiceServer.exe` | pasta **voice** informada |
+| `voice-server.exe` | `voice/bin/` |
+| `iniciar-voice-server.bat` | pasta **voice** (se incluído no pack) |
+
+### System (cliente L2)
+
+| Arquivo | Destino |
+|---------|---------|
+| `l2voice.dll` | pasta **system** informada |
+| `voice.ini` | pasta **system** informada |
+| `L2VoiceInject.exe` | pasta **system** informada |
+
+Inicie o jogo pelo **L2VoiceInject.exe**, não pelo `L2.exe` direto. O `Engine.dll` não é alterado.
 
 ---
 
-## 🚀 Como instalar
+## Como instalar
 
-### 1️⃣ Execute o instalador
-
-1. Baixe e abra **`ModVozALN.exe`**
-2. Informe **cada pasta separadamente**:
-
-| Campo | O que é |
-|-------|---------|
-| **1. Raiz da pack** | Ex.: `Brproject_Distribution` (preenche as demais) |
-| **2. Pasta game** | `config/custom` + `data/html` → `...\game` |
-| **3. Pasta libs** | Onde está `server.jar` → `...\libs` na **raiz** |
-| **4. Cliente system** | Pasta com `L2.exe` e `Engine.dll` |
-| **5. Pasta voice** | Onde roda o voice-server → `...\voice` |
-
-3. IP do voice-server (`127.0.0.1` local · IP público na VPS)
+1. Execute **ModVozALN.exe**
+2. Preencha **Game**, **Libs**, **Voice** e **System**
+3. Informe o **IP do voice-server** (`127.0.0.1` em teste local, IP público na VPS)
 4. Clique em **INSTALAR**
-
-O log mostra as classes detectadas no JAR (World/Player) — **não precisa de source** nem configurar `fork.*` manualmente.
-
-### 2️⃣ Suba os serviços (nessa ordem)
-
-```
-Memurai/Redis  →  Login Server  →  L2VoiceServer.exe  →  GameServer
-```
-
-| Serviço | Como iniciar |
-|---------|--------------|
-| 🗄️ Redis | Memurai em `127.0.0.1:6379` |
-| 📡 Voice | **`L2VoiceServer.exe`** (deixe aberto) |
-| 🖥️ GS | **`INICIAR-GS-COM-VOZ.bat`** ou `.bat` original (javaagent injetado) |
-| 🎮 Cliente | **`L2VoiceInject.exe`** (não use `L2.exe` direto) |
-
-### 3️⃣ No jogo
-
-| Tecla | Função |
-|-------|--------|
-| **INSERT** | Abrir painel de voz |
-| **H** (segurar) | Falar por proximidade (PTT) |
+5. Confira o log — deve listar os arquivos copiados em cada pasta
 
 ---
 
-## 📋 Requisitos
+## Ordem para subir o servidor
+
+```
+Redis/Memurai  →  Login Server  →  L2VoiceServer.exe  →  GameServer
+```
+
+| Etapa | Ação |
+|-------|------|
+| 1 | Redis ou Memurai em `127.0.0.1:6379` |
+| 2 | Login Server da pack |
+| 3 | **L2VoiceServer.exe** na pasta voice (deixe a janela aberta) |
+| 4 | GameServer pelo `.bat` com `-javaagent` (`INICIAR-GS-COM-VOZ.bat` ou script original) |
+| 5 | Cliente via **L2VoiceInject.exe** na pasta system |
+
+No log do GameServer deve aparecer que o javaagent L2Voice foi carregado.
+
+---
+
+## Requisitos
 
 | Item | Detalhe |
 |------|---------|
-| 💻 SO | Windows 10/11 |
-| ☕ Java | JDK 11+ no GameServer (conforme sua pack) |
-| 🗄️ Redis | Memurai ou Redis em `127.0.0.1:6379` |
-| 🔥 Firewall | UDP **17666** + TCP **17667** (jogadores remotos) |
+| Sistema | Windows 10/11 |
+| Java | Versão exigida pela sua pack no GameServer |
+| Redis | Memurai ou Redis em `127.0.0.1:6379` |
+| Firewall | UDP **17666** e TCP **17667** (jogadores fora da máquina local) |
 
 ---
 
-## 🧩 Revisões suportadas (auto-detect no JAR)
+## No jogo
 
-O bridge descobre sozinho **World**, **Player** e **posição** lendo o `server.jar` — sem source da revisão.
+| Tecla | Função |
+|-------|--------|
+| INSERT | Painel de voz |
+| H (segurar) | Falar por proximidade (PTT) |
 
-| Pack | Suporte |
-|------|---------|
-| ✅ BrProject / L2JBR | Nativo |
-| ✅ L2jMega / L2JALN | Nativo |
-| ✅ aCis / RusaCis | Nativo |
-| ✅ L2jFrozen | Nativo |
-| ✅ L2JServer | Nativo |
-| ✅ L2Emu / EmuDev | Nativo |
-| ✅ L2jMobius | Nativo |
-| ✅ Revisão custom | Scan automático do JAR; override opcional com `fork.*` |
+---
 
-Override só se a revisão for muito diferente (raro):
+## Perguntas frequentes
+
+**Preciso do código-fonte do GameServer?**  
+Não. O mod usa `-javaagent` e reflexão no JAR que você já tem.
+
+**Preciso editar `GameServer.java`?**  
+Não. Basta o `-javaagent:l2voice-bridge.jar` no `.bat` de subida.
+
+**Onde vai a pasta libs?**  
+Na pasta onde o GameServer já carrega os JARs — pode ser `libs` na raiz da pack ou `game/libs`, conforme o `.bat` da sua revisão. Use o mesmo caminho no campo **Libs** do instalador.
+
+**Classes World/Player precisam ser configuradas?**  
+Em geral não. O bridge detecta automaticamente no JAR. Só em revisões muito customizadas, opcionalmente em `l2jalnvoice.properties`:
 
 ```properties
 l2jalnvoice.fork.world = pacote.model.World
@@ -142,56 +143,14 @@ l2jalnvoice.fork.player = pacote.model.actor.Player
 
 ---
 
-## ❓ Perguntas frequentes
+## Repositório
 
-<details>
-<summary><b>📁 Os JARs vão em game/libs ou na libs da raiz?</b></summary>
-
-Na pasta <b>libs onde o GameServer carrega os JARs</b>. No <b>BrProject</b> é só uma <code>libs</code> na raiz da pack (<code>Brproject_Distribution/libs</code>), junto com <code>server.jar</code>. <b>Não</b> crie <code>game/libs</code> só para o mod.
-</details>
-
-<details>
-<summary><b>🔒 Preciso do código-fonte?</b></summary>
-
-Não. O instalador embute tudo no <code>.exe</code>. O bridge usa reflexão no JAR que você já tem.
-</details>
-
-<details>
-<summary><b>🛠️ Preciso editar GameServer.java?</b></summary>
-
-Não. Use <code>-javaagent:l2voice-bridge.jar</code> (o instalador configura nos <code>.bat</code>).
-</details>
-
-<details>
-<summary><b>🎯 O Engine.dll é alterado?</b></summary>
-
-Não. Inicie pelo <code>L2VoiceInject.exe</code>.
-</details>
-
-<details>
-<summary><b>🌐 Teste local vs VPS</b></summary>
-
-<ul>
-<li><b>Local:</b> IP <code>127.0.0.1</code> + Memurai + voice-server na mesma máquina</li>
-<li><b>VPS:</b> IP público do voice-server + portas 17666/17667 no firewall</li>
-</ul>
-</details>
-
----
-
-## 📞 Suporte
-
-| Canal | Link |
-|-------|------|
-| 🐙 GitHub | [ALN2025/ModVozALN.exe](https://github.com/ALN2025/ModVozALN.exe) |
-| 🌐 ScriptClean | [scriptclean.com.br](https://scriptclean.com.br) |
+[github.com/ALN2025/ModVozALN.exe](https://github.com/ALN2025/ModVozALN.exe)
 
 ---
 
 <div align="center">
 
 **© 2026 Dev ALN — ModVozALN / L2Voice**
-
-*Distribuição pública: apenas o instalador. Código-fonte e assets de desenvolvimento permanecem em repositório privado.*
 
 </div>
