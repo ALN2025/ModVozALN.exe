@@ -4,7 +4,7 @@
 
 **Mod de voz por proximidade para servidores Lineage 2**
 
-[![Versão](https://img.shields.io/badge/versão-1.9.13-7c3aed?style=for-the-badge)](https://github.com/ALN2025/ModVozALN.exe)
+[![Versão](https://img.shields.io/badge/versão-1.9.14-7c3aed?style=for-the-badge)](https://github.com/ALN2025/ModVozALN.exe)
 [![Plataforma](https://img.shields.io/badge/plataforma-Windows-0078d4?style=for-the-badge&logo=windows&logoColor=white)](https://github.com/ALN2025/ModVozALN.exe)
 [![Download](https://img.shields.io/badge/⬇️_download-ModVozALN.zip-ec4899?style=for-the-badge)](https://github.com/ALN2025/ModVozALN.exe/raw/main/ModVozALN.zip)
 [![Dev](https://img.shields.io/badge/Dev-ALN-a855f7?style=for-the-badge)](https://github.com/ALN2025)
@@ -25,6 +25,8 @@
 | [ModVozALN.exe](https://github.com/ALN2025/ModVozALN.exe/raw/main/ModVozALN.exe) | Direto (o navegador pode bloquear e deixar arquivos *Não confirmado* em Downloads) |
 
 > ⚠️ Use o **ZIP** se o Chrome/Edge travar o download. Não precisa de pasta `pack/`, código-fonte ou JARs separados.
+
+> **Como saber se o exe está completo:** tamanho **~39 MB** = pack voice embutido. **~32 MB** = versão antiga **sem** `voice-server` — não instala a pasta voice.
 
 <details>
 <summary><b>Arquivos &quot;Não confirmado&quot; na pasta Downloads?</b></summary>
@@ -152,7 +154,7 @@ Memurai/Redis  →  Login Server  →  L2VoiceServer.exe  →  GameServer
    - UDP **17666** (áudio)
    - TCP **17667** (WebSocket / controle)
 4. Suba na ordem: **Redis** → **Login** → **`L2VoiceServer.exe`** → **GameServer**.
-5. Confirme no log do instalador: `ModVozALN v1.9.13` e `[Pack] OK`.
+5. Confirme no log do instalador: `ModVozALN v1.9.14` e `[Pack] OK`.
 
 ### No PC do jogador (cliente)
 
@@ -196,7 +198,7 @@ audio_profile = receive_only ; nunca transmite
 - [ ] `L2VoiceServer.exe` aberto e sem erro
 - [ ] GameServer com `-javaagent` (instalador injeta nos `.bat`)
 - [ ] Cliente abre via **`L2VoiceInject.exe`**
-- [ ] Log do instalador mostra **v1.9.13**
+- [ ] Log do instalador mostra **v1.9.14**
 
 ### 3️⃣ No jogo
 
