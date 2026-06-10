@@ -1,0 +1,93 @@
+================================================================================
+  JDK — REQUISITOS PARA O MOD DE VOZ FUNCIONAR
+  ModVozALN v1.9.44+ | Dev ALN
+================================================================================
+
+O mod de voz NAO substitui o Java da sua pack. O GameServer continua usando
+o MESMO JDK que a revisao exige (ex.: BrProject / ext.mods = Java 25).
+
+O instalador e o L2GameServer.exe encontram o JDK automaticamente no PC.
+
+================================================================================
+  QUAL JDK PRECISO?
+================================================================================
+
+  Use a MESMA versao que sua pack pede no .bat do GameServer.
+
+  | Pack / revisao          | Java tipico |
+  |-------------------------|-------------|
+  | BrProject / ext.mods    | JDK 25      |
+  | L2jMega / L2JALN        | JDK 17–21   |
+  | aCis / RusaCis          | JDK 11–17   |
+  | L2jMobius               | JDK 17–21   |
+  | L2jFrozen               | JDK 8–11    |
+
+  Se o GS sobe com UnsupportedClassVersionError (ex.: 69.0 vs 55.0), o Java
+  esta ERRADO — instale o JDK da versao da pack, nao um Java mais antigo.
+
+================================================================================
+  BUSCA AUTOMATICA (v1.9.44+)
+================================================================================
+
+  Ao instalar ou ao abrir L2GameServer.exe, o mod procura java.exe em:
+
+  1) JAVA_HOME (se estiver configurado)
+  2) Pastas conhecidas em TODOS os drives (C:, D:, E:, ...):
+       D:\core jdk 25\bin\java.exe
+       C:\core jdk 25\bin\java.exe
+       D:\jdk-25\bin\java.exe
+       ...
+  3) Program Files\Java, Eclipse Adoptium, Microsoft, Amazon Corretto
+  4) Pastas da pack (game, libs, raiz da distribuicao)
+
+  O caminho encontrado vai para game\gs-voz-launch.cfg:
+
+    "min_java": 25,
+    "java": "D:\\core jdk 25\\bin\\java.exe",
+    "java_home": "D:\\core jdk 25"
+
+  O L2GameServer.exe injeta JAVA_HOME e JAVA_CMD antes de chamar o .bat
+  original da pack — sem precisar editar set-java.bat na mao.
+
+================================================================================
+  INSTALAR O JDK (se ainda nao tiver)
+================================================================================
+
+  1) Baixe o JDK da MESMA versao da pack (ex.: JDK 25 para BrProject).
+  2) Extraia ou instale em um caminho simples, por exemplo:
+       D:\core jdk 25
+       C:\Program Files\Java\jdk-25
+  3) Reinstale o mod com ModVozALN.exe OU rode:
+       APLICAR-CORRECAO-PACK.bat "C:\caminho\Brproject_Distribution\game"
+  4) Confira game\gs-voz-launch.cfg — campo "java" deve apontar para java.exe.
+
+  NAO e necessario colocar o JDK dentro da pasta da pack.
+
+================================================================================
+  ORDEM DE SUBIDA (com Java correto)
+================================================================================
+
+  Memurai/Redis  ->  Login Server  ->  L2VoiceServer.exe  ->  L2GameServer.exe
+
+  O L2GameServer.exe usa o .bat ORIGINAL da pack (StartGame_*.bat) com o
+  JDK detectado. Deixe L2VoiceServer e L2GameServer abertos enquanto joga.
+
+================================================================================
+  PROBLEMAS COMUNS
+================================================================================
+
+  | Erro / sintoma                         | Solucao |
+  |----------------------------------------|---------|
+  | UnsupportedClassVersionError 69 vs 55  | Instale JDK 25; reinstale v1.9.44+ |
+  | %JAVA_HOME%\bin\java.exe nao encontrado| Reinstale mod; confira gs-voz-launch.cfg |
+  | GS abre mas voz nao conecta             | Suba L2VoiceServer.exe antes |
+  | Java 11 do PATH sobrescreve o JDK 25    | v1.9.44+ prioriza JDK da pack |
+
+================================================================================
+  MAIS INFORMACOES
+================================================================================
+
+  README: https://github.com/ALN2025/ModVozALN.exe
+  Apos instalar: game\docs\l2voice\JDK-REQUISITOS.txt
+
+================================================================================
