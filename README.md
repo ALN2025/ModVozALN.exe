@@ -4,7 +4,7 @@
 
 **Mod de voz por proximidade para servidores Lineage 2**
 
-[![Versão](https://img.shields.io/badge/versão-1.9.14-7c3aed?style=for-the-badge)](https://github.com/ALN2025/ModVozALN.exe)
+[![Versão](https://img.shields.io/badge/versão-1.9.17-7c3aed?style=for-the-badge)](https://github.com/ALN2025/ModVozALN.exe)
 [![Plataforma](https://img.shields.io/badge/plataforma-Windows-0078d4?style=for-the-badge&logo=windows&logoColor=white)](https://github.com/ALN2025/ModVozALN.exe)
 [![Download](https://img.shields.io/badge/⬇️_download-ModVozALN.zip-ec4899?style=for-the-badge)](https://github.com/ALN2025/ModVozALN.exe/raw/main/ModVozALN.zip)
 [![Dev](https://img.shields.io/badge/Dev-ALN-a855f7?style=for-the-badge)](https://github.com/ALN2025)
@@ -51,63 +51,83 @@ O navegador interrompeu o download do `.exe` (proteção do Windows). Pode **apa
 
 ## 📂 Pastas no instalador
 
-Informe **quatro pastas** — cada uma vai para a seção correta:
+O instalador pede **quatro pastas** — cada componente no lugar certo:
 
-| Campo | Selecione |
-|-------|-----------|
-| **Game** | Pasta do GameServer (`config/custom` + `data/html`) |
-| **Libs** | Pasta onde ficam os JARs do servidor (`server.jar`, etc.) |
-| **Voice** | Pasta do voice-server na raiz da pack |
-| **System** | Pasta `system` do cliente L2 (`L2.exe`, `Engine.dll`) |
+| Campo | O que selecionar | Arquivos instalados |
+|-------|------------------|---------------------|
+| **Game** | Pasta `game/` ou `game/config/custom/` | `l2jalnvoice.properties`, HTML, docs, `.bat` do GS |
+| **Libs** | Pasta dos JARs do servidor | `l2voice-bridge.jar`, `jedis-5.1.2.jar`, `-javaagent` nos `.bat` |
+| **Voice** | Pasta `voice/` na raiz da pack | `L2VoiceServer.exe`, `bin/voice-server.exe`, scripts |
+| **System** | Pasta `system` do cliente L2 | `l2voice.dll`, `voice.ini`, `L2VoiceInject.exe` |
 
-### 📦 Arquivos em cada pasta
+> Ao escolher **Game**, os campos **Libs** e **Voice** são sugeridos automaticamente. Confira antes de instalar.
 
-<details>
-<summary><b>🖥️ Game — config + data</b></summary>
+> Marque **“Subpasta voice/”** (padrão) para gerar `SuaPack\voice\` com os executáveis do voice-server.
 
-| Arquivo | Destino |
-|---------|---------|
+---
+
+## 📚 Para onde vai cada arquivo
+
+O instalador copia tudo nas pastas que **já existem** na sua pack. Use a mesma estrutura do seu `.bat` do GameServer.
+
+### Mapa completo
+
+| Arquivo | Pasta de destino |
+|---------|------------------|
 | `l2jalnvoice.properties` | `game/config/custom/` |
 | `voip-link.htm` | `game/data/html/mods/voip/` |
 | `INICIAR-GS-COM-VOZ.bat` | `game/` |
-
-</details>
-
-<details>
-<summary><b>📚 Libs — JARs do servidor</b></summary>
-
-| Arquivo | Destino |
-|---------|---------|
-| `l2voice-bridge.jar` | pasta **libs** informada |
-| `jedis-5.1.2.jar` | pasta **libs** informada |
-
-Use a **mesma pasta libs** onde o `.bat` do GameServer já carrega os JARs (`-cp`).
-
-</details>
-
-<details>
-<summary><b>📡 Voice — raiz da pack</b></summary>
-
-| Arquivo | Destino |
-|---------|---------|
-| `L2VoiceServer.exe` | pasta **voice** informada |
+| `l2voice-bridge.jar` | pasta **libs** do servidor (onde está o `server.jar`) |
+| `jedis-5.1.2.jar` | mesma pasta **libs** do `server.jar` |
+| `L2VoiceServer.exe` | `voice/` (raiz da pack) |
 | `voice-server.exe` | `voice/bin/` |
-| `iniciar-voice-server.bat` | pasta **voice** |
+| `iniciar-voice-server.bat` | `voice/` |
+| `l2voice.dll` | pasta do `L2.exe` (cliente) |
+| `voice.ini` | pasta do `L2.exe` (cliente) |
+| `L2VoiceInject.exe` | pasta do `L2.exe` (cliente) |
 
-</details>
+### Pasta **libs** — onde colocar os JARs
 
-<details>
-<summary><b>🎮 System — cliente L2</b></summary>
+Os JARs do mod vão na **mesma pasta** onde o GameServer já carrega os JARs (`-cp` do `.bat`).  
+**Não crie** uma pasta libs separada só com os arquivos do mod.
 
-| Arquivo | Destino |
-|---------|---------|
-| `l2voice.dll` | pasta **system** informada |
-| `voice.ini` | pasta **system** informada |
-| `L2VoiceInject.exe` | pasta **system** informada |
+Abra o `.bat` do GS e veja o `-cp`:
 
-Inicie pelo **L2VoiceInject.exe** — o `Engine.dll` **não** é alterado.
+| Se o `.bat` usa… | Os JARs vão para… |
+|------------------|-------------------|
+| `-cp "./libs/*"` dentro de `game/` | `game/libs/` |
+| `-cp "../libs/*"` a partir de `game/` | `libs/` na **raiz da pack** |
+| `-cp "./lib/*"` | `game/lib/` |
 
-</details>
+O instalador procura nesta ordem: `game/libs` → `game/lib` → `libs` na raiz da pack → cria `game/libs/` se nada existir.
+
+### Exemplo — libs na raiz da pack
+
+```
+MinhaPack/
+├── libs/              ← server.jar + l2voice-bridge.jar + jedis
+├── game/
+│   ├── config/
+│   └── data/
+└── voice/             ← criada pelo instalador
+```
+
+### Exemplo — libs dentro de game
+
+```
+MinhaPack/
+├── game/
+│   ├── config/
+│   ├── data/
+│   └── libs/          ← server.jar + l2voice-bridge.jar + jedis
+└── voice/
+```
+
+### Conferir após instalar
+
+Na pasta **libs** correta devem existir `l2voice-bridge.jar` e `jedis-5.1.2.jar`, e o `.bat` do GS deve ter `-javaagent` apontando para o bridge nessa mesma pasta.
+
+Inicie o cliente pelo **L2VoiceInject.exe** — o `Engine.dll` **não** é alterado.
 
 ---
 
@@ -115,10 +135,11 @@ Inicie pelo **L2VoiceInject.exe** — o `Engine.dll` **não** é alterado.
 
 ### 1️⃣ Execute o instalador
 
-1. Baixe e abra **`ModVozALN.exe`**
+1. Baixe e extraia **`ModVozALN.zip`** e abra **`ModVozALN.exe`**
 2. Preencha **Game**, **Libs**, **Voice** e **System**
-3. Informe o **IP do voice-server** (`127.0.0.1` local · IP público na VPS)
-4. Clique em **INSTALAR**
+3. Confira se **Libs** é a mesma pasta do `-cp` do `.bat` do GS
+4. Informe o **IP do voice-server** (`127.0.0.1` local · IP público na VPS)
+5. Clique em **INSTALAR**
 
 ### 2️⃣ Suba os serviços (nessa ordem)
 
@@ -226,7 +247,6 @@ O bridge descobre sozinho **World**, **Player** e **posição** lendo o JAR do G
 
 | Pack | Suporte |
 |------|---------|
-| ✅ BrProject / L2JBR | Nativo |
 | ✅ L2jMega / L2JALN | Nativo |
 | ✅ aCis / RusaCis | Nativo |
 | ✅ L2jFrozen | Nativo |
@@ -249,7 +269,7 @@ l2jalnvoice.fork.player = pacote.model.actor.Player
 <details>
 <summary><b>📁 Onde vai a pasta libs?</b></summary>
 
-Na pasta onde o GameServer <b>já carrega os JARs</b> — pode ser <code>libs</code> na raiz da pack ou <code>game/libs</code>, conforme o <code>.bat</code> da sua revisão. Informe esse caminho no campo <b>Libs</b>. Não crie uma pasta libs separada só com os JARs do mod.
+Na mesma pasta onde o <code>server.jar</code> já está — a que o <code>.bat</code> do GS usa no <code>-cp</code> (<code>game/libs/</code>, <code>game/lib/</code> ou <code>libs/</code> na raiz da pack). Veja o <b>mapa completo</b> no README. Não crie uma libs separada só com os JARs do mod.
 </details>
 
 <details>
