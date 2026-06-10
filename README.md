@@ -2,9 +2,9 @@
 
 # 🎙️ ModVozALN — Instalador L2Voice
 
-**Mod de voz por proximidade para servidores Lineage 2 (aCis · L2Off · Mobius)**
+**Mod de voz por proximidade para servidores Lineage 2**
 
-[![Versão](https://img.shields.io/badge/versão-1.7.0-7c3aed?style=for-the-badge)](https://github.com/ALN2025/ModVozALN.exe)
+[![Versão](https://img.shields.io/badge/versão-1.8.0-7c3aed?style=for-the-badge)](https://github.com/ALN2025/ModVozALN.exe)
 [![Plataforma](https://img.shields.io/badge/plataforma-Windows-0078d4?style=for-the-badge&logo=windows&logoColor=white)](https://github.com/ALN2025/ModVozALN.exe)
 [![Download](https://img.shields.io/badge/⬇️_download-ModVozALN.exe-ec4899?style=for-the-badge)](https://github.com/ALN2025/ModVozALN.exe/raw/main/ModVozALN.exe)
 [![Dev](https://img.shields.io/badge/Dev-ALN-a855f7?style=for-the-badge)](https://github.com/ALN2025)
@@ -53,8 +53,10 @@
 ### 2️⃣ Suba os serviços (nessa ordem)
 
 ```
-Memurai/Redis  →  L2VoiceServer.exe  →  Login Server  →  GameServer
+Memurai/Redis  →  Login Server  →  L2VoiceServer.exe  →  GameServer
 ```
+
+Ou use **`INICIAR-SERVIDOR-COM-VOZ.bat`** na raiz da pack (criado pelo instalador).
 
 | Serviço | Como iniciar |
 |---------|--------------|
@@ -83,14 +85,17 @@ Memurai/Redis  →  L2VoiceServer.exe  →  Login Server  →  GameServer
 
 ---
 
-## 🧩 Packs suportadas
+## 🧩 Packs suportadas (auto-detect)
 
 | Pack | Suporte |
 |------|---------|
-| ✅ aCis | Nativo |
-| ✅ L2Off | Nativo |
-| ✅ Mobius | Nativo |
-| ⚙️ Pack personalizada | Configure `fork.*` em `l2jalnvoice.properties` após instalar |
+| ✅ L2jMega / L2JALN | Nativo |
+| ✅ aCis / RusaCis | Nativo |
+| ✅ L2jFrozen | Nativo |
+| ✅ L2JServer | Nativo |
+| ✅ L2Emu / L2Off / EmuDev | Nativo |
+| ✅ L2jMobius | Nativo |
+| ⚙️ Pack personalizada | Configure `fork.*` em `l2jalnvoice.properties` |
 
 ---
 
