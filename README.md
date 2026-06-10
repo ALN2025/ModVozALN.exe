@@ -4,7 +4,7 @@
 
 **Mod de voz por proximidade para servidores Lineage 2**
 
-[![Versão](https://img.shields.io/badge/versão-1.9.19-7c3aed?style=for-the-badge)](https://github.com/ALN2025/ModVozALN.exe)
+[![Versão](https://img.shields.io/badge/versão-1.9.20-7c3aed?style=for-the-badge)](https://github.com/ALN2025/ModVozALN.exe)
 [![Plataforma](https://img.shields.io/badge/plataforma-Windows-0078d4?style=for-the-badge&logo=windows&logoColor=white)](https://github.com/ALN2025/ModVozALN.exe)
 [![Download](https://img.shields.io/badge/⬇️_download-ModVozALN.zip-ec4899?style=for-the-badge)](https://github.com/ALN2025/ModVozALN.exe/raw/main/ModVozALN.zip)
 [![Dev](https://img.shields.io/badge/Dev-ALN-a855f7?style=for-the-badge)](https://github.com/ALN2025)
@@ -26,9 +26,9 @@
 
 > ⚠️ Use o **ZIP** se o Chrome/Edge travar o download. Apague ZIP antigo na pasta Downloads antes de baixar de novo.
 
-> **Como saber se baixou a versão certa:** dentro do ZIP, abra `VERSION.txt` — deve mostrar **v1.9.19**. O `ModVozALN.exe` deve ter **~39 MB** (versão antiga ~32 MB não instala voice).
+> **Como saber se baixou a versão certa:** dentro do ZIP, abra `VERSION.txt` — deve mostrar **v1.9.20**. O `ModVozALN.exe` deve ter **~39 MB** (versão antiga ~32 MB não instala voice).
 
-### Conteúdo do ZIP (v1.9.19)
+### Conteúdo do ZIP (v1.9.20)
 
 | Arquivo | Função |
 |---------|--------|
@@ -36,7 +36,7 @@
 | `VERSION.txt` | Confirma a versão baixada |
 | `LEIA-ME-DOWNLOAD.txt` | Instruções rápidas após extrair |
 
-Ao abrir o instalador, a splash mostra **ScriptClean** · **Modo de voz ALN** (ícone menor). O título da janela deve exibir **`v1.9.19`**.
+Ao abrir o instalador, a splash mostra **ScriptClean** · **Modo de voz ALN** (ícone menor). O título da janela deve exibir **`v1.9.20`** com **4 campos**: Game, Libs, Voice, System.
 
 <details>
 <summary><b>Arquivos &quot;Não confirmado&quot; na pasta Downloads?</b></summary>
@@ -66,7 +66,9 @@ O instalador pede **quatro pastas** — cada componente no lugar certo:
 
 | Campo | O que selecionar | Arquivos instalados |
 |-------|------------------|---------------------|
-| **Game** | Pasta `game/` ou `game/config/custom/` | `l2jalnvoice.properties`, HTML, docs, `.bat` do GS |
+| **Game** | Pasta `game/` ou `game/config/custom/` (ou raiz da pack) | `l2jalnvoice.properties`, HTML, docs, `.bat` do GS |
+
+> **Campo Game:** selecione a pasta **`game`** dentro da pack. Se der erro, use a **raiz da pack** (pasta que contém `login` + `game`).
 | **Libs** | Pasta dos JARs do servidor | `l2voice-bridge.jar`, `jedis-5.1.2.jar`, `-javaagent` nos `.bat` |
 | **Voice** | Pasta `voice/` na raiz da pack | `L2VoiceServer.exe`, `bin/voice-server.exe`, scripts |
 | **System** | Pasta `system` do cliente L2 | `l2voice.dll`, `voice.ini`, `L2VoiceInject.exe` |
@@ -186,7 +188,7 @@ Memurai/Redis  →  Login Server  →  L2VoiceServer.exe  →  GameServer
    - UDP **17666** (áudio)
    - TCP **17667** (WebSocket / controle)
 4. Suba na ordem: **Redis** → **Login** → **`L2VoiceServer.exe`** → **GameServer**.
-5. Confirme no log do instalador: `ModVozALN v1.9.19` e `[Pack] OK`.
+5. Confirme no log do instalador: `ModVozALN v1.9.20` e `[Pack] OK`.
 
 ### No PC do jogador (cliente)
 
@@ -230,7 +232,7 @@ audio_profile = receive_only ; nunca transmite
 - [ ] `L2VoiceServer.exe` aberto e sem erro
 - [ ] GameServer com `-javaagent` (instalador injeta nos `.bat`)
 - [ ] Cliente abre via **`L2VoiceInject.exe`**
-- [ ] `VERSION.txt` no ZIP e log do instalador mostram **v1.9.19**
+- [ ] `VERSION.txt` no ZIP e log do instalador mostram **v1.9.20**
 
 ### 3️⃣ No jogo
 
