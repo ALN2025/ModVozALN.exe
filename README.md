@@ -4,9 +4,9 @@
 
 **Mod de voz por proximidade para servidores Lineage 2**
 
-[![Versão](https://img.shields.io/badge/versão-1.9.6-7c3aed?style=for-the-badge)](https://github.com/ALN2025/ModVozALN.exe)
+[![Versão](https://img.shields.io/badge/versão-1.9.13-7c3aed?style=for-the-badge)](https://github.com/ALN2025/ModVozALN.exe)
 [![Plataforma](https://img.shields.io/badge/plataforma-Windows-0078d4?style=for-the-badge&logo=windows&logoColor=white)](https://github.com/ALN2025/ModVozALN.exe)
-[![Download](https://img.shields.io/badge/⬇️_download-ModVozALN.exe-ec4899?style=for-the-badge)](https://github.com/ALN2025/ModVozALN.exe/raw/main/ModVozALN.exe)
+[![Download](https://img.shields.io/badge/⬇️_download-ModVozALN.zip-ec4899?style=for-the-badge)](https://github.com/ALN2025/ModVozALN.exe/raw/main/ModVozALN.zip)
 [![Dev](https://img.shields.io/badge/Dev-ALN-a855f7?style=for-the-badge)](https://github.com/ALN2025)
 
 **Mod De Voz Dev ⩿ A.L.N/⪀**
@@ -21,9 +21,17 @@
 
 | Arquivo | Descrição |
 |---------|-----------|
-| [**ModVozALN.exe**](https://github.com/ALN2025/ModVozALN.exe/raw/main/ModVozALN.exe) | Instalador único (~14 MB) — **tudo já embutido** |
+| [**ModVozALN.zip**](https://github.com/ALN2025/ModVozALN.exe/raw/main/ModVozALN.zip) | **Recomendado** — extraia e execute `ModVozALN.exe` (~39 MB) |
+| [ModVozALN.exe](https://github.com/ALN2025/ModVozALN.exe/raw/main/ModVozALN.exe) | Direto (o navegador pode bloquear e deixar arquivos *Não confirmado* em Downloads) |
 
-> ⚠️ Baixe **somente** o executável. Não é necessário pasta `pack/`, código-fonte ou JARs separados.
+> ⚠️ Use o **ZIP** se o Chrome/Edge travar o download. Não precisa de pasta `pack/`, código-fonte ou JARs separados.
+
+<details>
+<summary><b>Arquivos &quot;Não confirmado&quot; na pasta Downloads?</b></summary>
+
+O navegador interrompeu o download do `.exe` (proteção do Windows). Pode **apagar** esses arquivos. Baixe o **ModVozALN.zip**, extraia com botão direito → *Extrair tudo*, e rode o `.exe` de dentro da pasta.
+
+</details>
 
 ---
 
@@ -123,6 +131,73 @@ Memurai/Redis  →  Login Server  →  L2VoiceServer.exe  →  GameServer
 | 🖥️ GS | **`INICIAR-GS-COM-VOZ.bat`** (ou `.bat` do GS — javaagent já injetado) |
 | 🎮 Cliente | **`L2VoiceInject.exe`** na pasta `system` |
 
+---
+
+## 🌐 Teste em VPS (guia para quem for testar online)
+
+> ✅ **Testado local** pelo autor (`127.0.0.1`). **VPS/online** é para a comunidade testar — siga este guia.
+
+### Cenário típico
+
+| Onde roda | O quê |
+|-----------|--------|
+| **VPS Windows** | Login + GameServer + Redis/Memurai + `L2VoiceServer.exe` |
+| **PC do jogador** | Cliente L2 com `l2voice.dll` + `voice.ini` + `L2VoiceInject.exe` |
+
+### Passo a passo na VPS
+
+1. **Instale o mod** com `ModVozALN.exe` na pack do servidor (Game, Libs, Voice, System do cliente pode ser em outro PC).
+2. No campo **IP do voice-server**, use o **IP público da VPS** (ex.: `191.44.11.151`) — **não** use `127.0.0.1` se jogadores forem de outro PC.
+3. **Firewall da VPS** — libere:
+   - UDP **17666** (áudio)
+   - TCP **17667** (WebSocket / controle)
+4. Suba na ordem: **Redis** → **Login** → **`L2VoiceServer.exe`** → **GameServer**.
+5. Confirme no log do instalador: `ModVozALN v1.9.13` e `[Pack] OK`.
+
+### No PC do jogador (cliente)
+
+1. Rode o instalador apontando **System** para a pasta do `L2.exe`.
+2. Use o **mesmo IP público** da VPS no instalador (gera o `voice.ini` com `ws://IP:17667/ws`).
+3. Inicie o jogo pelo **`L2VoiceInject.exe`** — não pelo `L2.exe` direto.
+
+### `voice.ini` — preciso mexer?
+
+**Em geral, não.** O instalador gera assim:
+
+```ini
+overlay = 1
+audio_profile = auto
+```
+
+A DLL **detecta sozinha** o hardware:
+
+| Seu equipamento | Comportamento |
+|-----------------|---------------|
+| **Headset** USB/BT com mic | Fala + escuta + painel |
+| Notebook (mic integrado) | Só escuta |
+| Fone sem mic | Só escuta |
+| Mic de mesa | Fala + escuta |
+
+Quem tem **headset** pode deixar o padrão — não precisa editar nada (como no teste local do autor).
+
+Só edite `voice.ini` se quiser **forçar** um modo:
+
+```ini
+audio_profile = headset      ; sempre tenta falar
+audio_profile = notebook     ; sempre só escuta
+audio_profile = receive_only ; nunca transmite
+```
+
+### Checklist rápido VPS
+
+- [ ] IP público no instalador (servidor **e** cliente)
+- [ ] Portas **17666/17667** abertas no firewall da VPS
+- [ ] Memurai/Redis rodando na VPS
+- [ ] `L2VoiceServer.exe` aberto e sem erro
+- [ ] GameServer com `-javaagent` (instalador injeta nos `.bat`)
+- [ ] Cliente abre via **`L2VoiceInject.exe`**
+- [ ] Log do instalador mostra **v1.9.13**
+
 ### 3️⃣ No jogo
 
 | Tecla | Função |
@@ -200,21 +275,34 @@ Em geral não — o bridge detecta no JAR automaticamente. Só em packs muito cu
 </details>
 
 <details>
-<summary><b>🌐 Teste local vs VPS</b></summary>
+<summary><b>🌐 Local vs VPS (resumo)</b></summary>
 
 <ul>
-<li><b>Local:</b> IP <code>127.0.0.1</code> no instalador + Memurai + voice-server na mesma máquina</li>
-<li><b>VPS:</b> IP público do voice-server + portas 17666/17667 liberadas no firewall</li>
+<li><b>Local:</b> IP <code>127.0.0.1</code> — tudo na mesma máquina (testado pelo autor)</li>
+<li><b>VPS:</b> IP público + firewall — veja seção <b>Teste em VPS</b> acima</li>
 </ul>
+</details>
+
+<details>
+<summary><b>🎧 Headset / notebook / fone sem mic</b></summary>
+
+O <code>voice.ini</code> padrão usa <code>audio_profile = auto</code>. A DLL detecta o dispositivo no Windows — não é necessário configurar por jogador. Headset = fala e escuta; notebook com mic integrado = só escuta.
 </details>
 
 ---
 
-## 📞 Suporte
+## ⚠️ Suporte
 
-| Canal | Link |
+> **Não há suporte individual.** Leia este README e a documentação antes de instalar.
+
+| O quê | Onde |
 |-------|------|
-| 🐙 GitHub | [ALN2025/ModVozALN.exe](https://github.com/ALN2025/ModVozALN.exe) |
+| 📖 Este guia | README do repositório |
+| 📖 Integração / packs | Arquivos em `game/docs/l2voice/` após instalar |
+| 🐙 Releases | [ALN2025/ModVozALN.exe](https://github.com/ALN2025/ModVozALN.exe) |
+| ❌ DM / WhatsApp / pedido de source | **Não atendido** |
+
+Problemas comuns: IP errado, firewall, exe antigo do GitHub, cliente aberto pelo `L2.exe` em vez do `L2VoiceInject.exe`, Redis parado.
 
 ---
 
