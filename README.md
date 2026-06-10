@@ -4,7 +4,7 @@
 
 **Mod de voz por proximidade para servidores Lineage 2**
 
-[![Versão](https://img.shields.io/badge/versão-1.9.41-7c3aed?style=for-the-badge)](https://github.com/ALN2025/ModVozALN.exe)
+[![Versão](https://img.shields.io/badge/versão-1.9.42-7c3aed?style=for-the-badge)](https://github.com/ALN2025/ModVozALN.exe)
 [![Plataforma](https://img.shields.io/badge/plataforma-Windows-0078d4?style=for-the-badge&logo=windows&logoColor=white)](https://github.com/ALN2025/ModVozALN.exe)
 [![Download](https://img.shields.io/badge/⬇️_download-ModVozALN.zip-ec4899?style=for-the-badge)](https://github.com/ALN2025/ModVozALN.exe/raw/main/ModVozALN.zip)
 [![Dev](https://img.shields.io/badge/Dev-ALN-a855f7?style=for-the-badge)](https://github.com/ALN2025)
@@ -26,9 +26,9 @@
 
 > ⚠️ Use o **ZIP** se o Chrome/Edge travar o download. Apague ZIP antigo na pasta Downloads antes de baixar de novo.
 
-> **Como saber se baixou a versão certa:** dentro do ZIP, abra `VERSION.txt` — deve mostrar **v1.9.41**. O `ModVozALN.exe` deve ter **~39 MB** (versão antiga ~32 MB não instala voice).
+> **Como saber se baixou a versão certa:** dentro do ZIP, abra `VERSION.txt` — deve mostrar **v1.9.42**. O `ModVozALN.exe` deve ter **~39 MB** (versão antiga ~32 MB não instala voice).
 
-### Conteúdo do ZIP (v1.9.41)
+### Conteúdo do ZIP (v1.9.42)
 
 | Arquivo | Função |
 |---------|--------|
@@ -36,7 +36,7 @@
 | `VERSION.txt` | Confirma a versão baixada |
 | `LEIA-ME-DOWNLOAD.txt` | Instruções rápidas após extrair |
 
-Ao abrir o instalador, a splash mostra o banner **ScriptClean SOLUTIONS** + **Modo de voz ALN**. O título da janela deve exibir **`v1.9.41`** com **4 campos**: Game, Libs, Voice, System.
+Ao abrir o instalador, a splash mostra o banner **ScriptClean SOLUTIONS** + **Modo de voz ALN**. O título da janela deve exibir **`v1.9.42`** com **4 campos**: Game, Libs, Voice, System.
 
 <details>
 <summary><b>Arquivos &quot;Não confirmado&quot; na pasta Downloads?</b></summary>
@@ -51,7 +51,7 @@ O navegador interrompeu o download do `.exe` (proteção do Windows). Pode **apa
 
 | Campo | Instala automaticamente |
 |-------|-------------------------|
-| 🖥️ **Game** | `l2jalnvoice.properties`, HTML, docs, `L2GameServer.exe`, `INICIAR-GS-COM-VOZ.bat` |
+| 🖥️ **Game** | `l2jalnvoice.properties`, HTML, docs, `L2GameServer.exe`, `gs-voz-launch.cfg` |
 | 📚 **Libs** | `l2voice-bridge.jar`, `jedis-5.1.2.jar`, `-javaagent` nos `.bat` |
 | 📡 **Voice** | `L2VoiceServer.exe`, `voice-server.exe`, scripts |
 | 🎮 **System** | `l2voice.dll`, `voice.ini`, `L2VoiceInject.exe` |
@@ -90,7 +90,6 @@ O instalador copia tudo nas pastas que **já existem** na sua pack. Use a mesma 
 | `l2jalnvoice.properties` | `game/config/custom/` |
 | `voip-link.htm` | `game/data/html/mods/voip/` |
 | `L2GameServer.exe` | `game/` (janela L2j, sem CMD preto) |
-| `INICIAR-GS-COM-VOZ.bat` | `game/` (abre `L2GameServer.exe` se existir) |
 | `gs-voz-launch.cfg` | `game/` (config Java/classpath do launcher) |
 | `l2voice-bridge.jar` | pasta **libs** do servidor (onde está o `server.jar`) |
 | `jedis-5.1.2.jar` | mesma pasta **libs** do `server.jar` |
@@ -166,7 +165,7 @@ Memurai/Redis  →  Login Server  →  L2VoiceServer.exe  →  GameServer
 |---------|--------------|
 | 🗄️ Redis | Memurai em `127.0.0.1:6379` |
 | 📡 Voice | Duplo-clique em **`L2VoiceServer.exe`** (deixe aberto) |
-| 🖥️ GS | **`L2GameServer.exe`** ou `INICIAR-GS-COM-VOZ.bat` (aguarda voice na 17667) |
+| 🖥️ GS | **`L2GameServer.exe`** (abre voice sozinho · Java BrProject corrigido) |
 | 🎮 Cliente | **`L2VoiceInject.exe`** na pasta `system` |
 
 ---
@@ -190,7 +189,7 @@ Memurai/Redis  →  Login Server  →  L2VoiceServer.exe  →  GameServer
    - UDP **17666** (áudio)
    - TCP **17667** (WebSocket / controle)
 4. Suba na ordem: **Redis** → **Login** → **`L2VoiceServer.exe`** → **GameServer**.
-5. Confirme no log do instalador: `ModVozALN v1.9.41` e `[Pack] OK`.
+5. Confirme no log do instalador: `ModVozALN v1.9.42` e `[Pack] OK`.
 
 ### No PC do jogador (cliente)
 
@@ -234,7 +233,7 @@ audio_profile = receive_only ; nunca transmite
 - [ ] `L2VoiceServer.exe` aberto e sem erro
 - [ ] GameServer com `-javaagent` (instalador injeta nos `.bat`)
 - [ ] Cliente abre via **`L2VoiceInject.exe`**
-- [ ] `VERSION.txt` no ZIP e log do instalador mostram **v1.9.41**
+- [ ] `VERSION.txt` no ZIP e log do instalador mostram **v1.9.42**
 
 ### 3️⃣ No jogo
 
@@ -258,7 +257,7 @@ audio_profile = receive_only ; nunca transmite
 
 ## 🧩 Packs suportadas (auto-detect)
 
-O bridge descobre sozinho **World**, **Player** e **posição** lendo o JAR do GameServer — **sem source** da revisão. O instalador **v1.9.41+** faz o mesmo: lê o `.bat` da pack, escaneia os JARs e gera `INICIAR-GS-COM-VOZ.bat` + `fork.*` para **qualquer** revisão L2J (aCis, L2jMega, Mobius, Frozen, L2Off, pack customizada com outro pacote Java).
+O bridge descobre sozinho **World**, **Player** e **posição** lendo o JAR do GameServer — **sem source** da revisão. O instalador **v1.9.42+** faz o mesmo: lê o `.bat` da pack, escaneia os JARs e instala `L2GameServer.exe` + `gs-voz-launch.cfg` + `fork.*` para **qualquer** revisão L2J (aCis, L2jMega, Mobius, Frozen, L2Off, BrProject, pack customizada).
 
 | Pack | Suporte |
 |------|---------|
@@ -339,7 +338,7 @@ O <code>voice.ini</code> padrão usa <code>audio_profile = auto</code>. A DLL de
 | 🐙 Releases | [ALN2025/ModVozALN.exe](https://github.com/ALN2025/ModVozALN.exe) |
 | ❌ DM / WhatsApp / pedido de source | **Não atendido** |
 
-Problemas comuns: IP errado, firewall, ZIP antigo na pasta Downloads (apague e baixe de novo), `VERSION.txt` com versão antiga, cliente aberto pelo `L2.exe` em vez do `L2VoiceInject.exe`, Redis parado, **`INICIAR-GS-COM-VOZ.bat` antigo** (erro `com.l2jmega.gameserver.GameServer` em pack aCis — reinstale com v1.9.41+ para regenerar o `.bat`).
+Problemas comuns: IP errado, firewall, ZIP antigo na pasta Downloads (apague e baixe de novo), `VERSION.txt` com versão antiga, cliente aberto pelo `L2.exe` em vez do `L2VoiceInject.exe`, Redis parado, **`L2GameServer.exe` antigo** (reinstale com v1.9.42+ para atualizar launcher e `gs-voz-launch.cfg`).
 
 ---
 
