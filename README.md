@@ -4,7 +4,7 @@
 
 **Mod de voz por proximidade para servidores Lineage 2**
 
-[![Versão](https://img.shields.io/badge/versão-1.9.28-7c3aed?style=for-the-badge)](https://github.com/ALN2025/ModVozALN.exe)
+[![Versão](https://img.shields.io/badge/versão-1.9.32-7c3aed?style=for-the-badge)](https://github.com/ALN2025/ModVozALN.exe)
 [![Plataforma](https://img.shields.io/badge/plataforma-Windows-0078d4?style=for-the-badge&logo=windows&logoColor=white)](https://github.com/ALN2025/ModVozALN.exe)
 [![Download](https://img.shields.io/badge/⬇️_download-ModVozALN.zip-ec4899?style=for-the-badge)](https://github.com/ALN2025/ModVozALN.exe/raw/main/ModVozALN.zip)
 [![Dev](https://img.shields.io/badge/Dev-ALN-a855f7?style=for-the-badge)](https://github.com/ALN2025)
@@ -26,9 +26,9 @@
 
 > ⚠️ Use o **ZIP** se o Chrome/Edge travar o download. Apague ZIP antigo na pasta Downloads antes de baixar de novo.
 
-> **Como saber se baixou a versão certa:** dentro do ZIP, abra `VERSION.txt` — deve mostrar **v1.9.28**. O `ModVozALN.exe` deve ter **~39 MB** (versão antiga ~32 MB não instala voice).
+> **Como saber se baixou a versão certa:** dentro do ZIP, abra `VERSION.txt` — deve mostrar **v1.9.32**. O `ModVozALN.exe` deve ter **~39 MB** (versão antiga ~32 MB não instala voice).
 
-### Conteúdo do ZIP (v1.9.28)
+### Conteúdo do ZIP (v1.9.32)
 
 | Arquivo | Função |
 |---------|--------|
@@ -36,7 +36,7 @@
 | `VERSION.txt` | Confirma a versão baixada |
 | `LEIA-ME-DOWNLOAD.txt` | Instruções rápidas após extrair |
 
-Ao abrir o instalador, a splash mostra **ScriptClean** · **Modo de voz ALN**. O título da janela deve exibir **`v1.9.28`** com **4 campos**: Game, Libs, Voice, System.
+Ao abrir o instalador, a splash mostra o banner **ScriptClean SOLUTIONS** + **Modo de voz ALN**. O título da janela deve exibir **`v1.9.32`** com **4 campos**: Game, Libs, Voice, System.
 
 <details>
 <summary><b>Arquivos &quot;Não confirmado&quot; na pasta Downloads?</b></summary>
@@ -188,7 +188,7 @@ Memurai/Redis  →  Login Server  →  L2VoiceServer.exe  →  GameServer
    - UDP **17666** (áudio)
    - TCP **17667** (WebSocket / controle)
 4. Suba na ordem: **Redis** → **Login** → **`L2VoiceServer.exe`** → **GameServer**.
-5. Confirme no log do instalador: `ModVozALN v1.9.28` e `[Pack] OK`.
+5. Confirme no log do instalador: `ModVozALN v1.9.32` e `[Pack] OK`.
 
 ### No PC do jogador (cliente)
 
@@ -232,7 +232,7 @@ audio_profile = receive_only ; nunca transmite
 - [ ] `L2VoiceServer.exe` aberto e sem erro
 - [ ] GameServer com `-javaagent` (instalador injeta nos `.bat`)
 - [ ] Cliente abre via **`L2VoiceInject.exe`**
-- [ ] `VERSION.txt` no ZIP e log do instalador mostram **v1.9.28**
+- [ ] `VERSION.txt` no ZIP e log do instalador mostram **v1.9.32**
 
 ### 3️⃣ No jogo
 
@@ -256,7 +256,7 @@ audio_profile = receive_only ; nunca transmite
 
 ## 🧩 Packs suportadas (auto-detect)
 
-O bridge descobre sozinho **World**, **Player** e **posição** lendo o JAR do GameServer — **sem source** da revisão. O instalador **v1.9.28+** faz o mesmo: lê o `.bat` da pack, escaneia os JARs e gera `INICIAR-GS-COM-VOZ.bat` + `fork.*` para **qualquer** revisão L2J (aCis, L2jMega, Mobius, Frozen, L2Off, pack customizada com outro pacote Java).
+O bridge descobre sozinho **World**, **Player** e **posição** lendo o JAR do GameServer — **sem source** da revisão. O instalador **v1.9.32+** faz o mesmo: lê o `.bat` da pack, escaneia os JARs e gera `INICIAR-GS-COM-VOZ.bat` + `fork.*` para **qualquer** revisão L2J (aCis, L2jMega, Mobius, Frozen, L2Off, pack customizada com outro pacote Java).
 
 | Pack | Suporte |
 |------|---------|
@@ -337,7 +337,7 @@ O <code>voice.ini</code> padrão usa <code>audio_profile = auto</code>. A DLL de
 | 🐙 Releases | [ALN2025/ModVozALN.exe](https://github.com/ALN2025/ModVozALN.exe) |
 | ❌ DM / WhatsApp / pedido de source | **Não atendido** |
 
-Problemas comuns: IP errado, firewall, ZIP antigo na pasta Downloads (apague e baixe de novo), `VERSION.txt` com versão antiga, cliente aberto pelo `L2.exe` em vez do `L2VoiceInject.exe`, Redis parado, **`INICIAR-GS-COM-VOZ.bat` antigo** (erro `com.l2jmega.gameserver.GameServer` em pack aCis — reinstale com v1.9.28+ para regenerar o `.bat`).
+Problemas comuns: IP errado, firewall, ZIP antigo na pasta Downloads (apague e baixe de novo), `VERSION.txt` com versão antiga, cliente aberto pelo `L2.exe` em vez do `L2VoiceInject.exe`, Redis parado, **`INICIAR-GS-COM-VOZ.bat` antigo** (erro `com.l2jmega.gameserver.GameServer` em pack aCis — reinstale com v1.9.32+ para regenerar o `.bat`).
 
 ---
 
