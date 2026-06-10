@@ -4,7 +4,7 @@
 
 **Mod de voz por proximidade para servidores Lineage 2**
 
-[![Versão](https://img.shields.io/badge/versão-1.9.44-7c3aed?style=for-the-badge)](https://github.com/ALN2025/ModVozALN.exe)
+[![Versão](https://img.shields.io/badge/versão-1.9.45-7c3aed?style=for-the-badge)](https://github.com/ALN2025/ModVozALN.exe)
 [![Plataforma](https://img.shields.io/badge/plataforma-Windows-0078d4?style=for-the-badge&logo=windows&logoColor=white)](https://github.com/ALN2025/ModVozALN.exe)
 [![Download](https://img.shields.io/badge/⬇️_download-ModVozALN.zip-ec4899?style=for-the-badge)](https://github.com/ALN2025/ModVozALN.exe/raw/main/ModVozALN.zip)
 [![Dev](https://img.shields.io/badge/Dev-ALN-a855f7?style=for-the-badge)](https://github.com/ALN2025)
@@ -26,9 +26,9 @@
 
 > ⚠️ Use o **ZIP** se o Chrome/Edge travar o download. Apague ZIP antigo na pasta Downloads antes de baixar de novo.
 
-> **Como saber se baixou a versão certa:** dentro do ZIP, abra `VERSION.txt` — deve mostrar **v1.9.44**. O `ModVozALN.exe` deve ter **~39 MB** (versão antiga ~32 MB não instala voice).
+> **Como saber se baixou a versão certa:** dentro do ZIP, abra `VERSION.txt` — deve mostrar **v1.9.45**. O `ModVozALN.exe` deve ter **~39 MB** (versão antiga ~32 MB não instala voice).
 
-### Conteúdo do ZIP (v1.9.44)
+### Conteúdo do ZIP (v1.9.45)
 
 | Arquivo | Função |
 |---------|--------|
@@ -36,7 +36,7 @@
 | `VERSION.txt` | Confirma a versão baixada |
 | `LEIA-ME-DOWNLOAD.txt` | Instruções rápidas após extrair |
 
-Ao abrir o instalador, a splash mostra o banner **ScriptClean SOLUTIONS** + **Modo de voz ALN**. O título da janela deve exibir **`v1.9.44`** com **4 campos**: Game, Libs, Voice, System.
+Ao abrir o instalador, a splash mostra o banner **ScriptClean SOLUTIONS** + **Modo de voz ALN**. O título da janela deve exibir **`v1.9.45`** com **4 campos**: Game, Libs, Voice, System.
 
 <details>
 <summary><b>Arquivos &quot;Não confirmado&quot; na pasta Downloads?</b></summary>
@@ -165,8 +165,39 @@ Memurai/Redis  →  Login Server  →  L2VoiceServer.exe  →  GameServer
 |---------|--------------|
 | 🗄️ Redis | Memurai em `127.0.0.1:6379` |
 | 📡 Voice | Duplo-clique em **`L2VoiceServer.exe`** (deixe aberto) |
-| 🖥️ GS | **`L2GameServer.exe`** (busca JDK automaticamente · chama `.bat` original da pack) |
-| 🎮 Cliente | **`L2VoiceInject.exe`** na pasta `system` |
+| 🖥️ GS | **`L2GameServer.exe`** (JDK automático · packs tradicionais usam `.bat` · BrProject usa java direto) |
+| 🎮 Cliente | **`L2VoiceInject.exe`** na pasta `system` (qualquer cliente L2 tradicional) |
+
+---
+
+## 🎮 Cliente tradicional — como funciona
+
+O mod **não altera** `Engine.dll`, `L2.exe` nem o protocolo do cliente. Funciona com **qualquer chronicle/cliente L2 clássico** (Interlude, High Five, Essence, etc.) desde que o jogador use os arquivos instalados na pasta `system`:
+
+| Arquivo | Função |
+|---------|--------|
+| `l2voice.dll` | Áudio + overlay de voz |
+| `voice.ini` | IP do voice-server (`ws://IP:17667/ws`) |
+| `L2VoiceInject.exe` | Abre o `L2.exe` carregando a DLL |
+
+**Regra:** o jogador sempre inicia pelo **`L2VoiceInject.exe`**, não pelo `L2.exe`. O resto do cliente (interface, system, patches) permanece igual.
+
+O `voice.ini` usa `audio_profile = auto` — detecta headset, notebook ou fone sem mic sozinho. Não precisa configurar por jogador.
+
+---
+
+## 🖥️ Packs tradicionais vs BrProject (servidor)
+
+O **`L2GameServer.exe`** adapta a subida conforme a pack detectada no `gs-voz-launch.cfg`:
+
+| Tipo de pack | Exemplos | Como o launcher sobe o GS |
+|--------------|----------|---------------------------|
+| **Tradicional** | aCis, L2jMega, Mobius, Frozen, L2Off | Chama o **`.bat` original`** da pack com `-javaagent` já injetado |
+| **BrProject** | ext.mods, classpath enorme | **Java direto** (evita limite de 8191 chars do CMD) |
+
+Em packs tradicionais o fluxo é o mesmo de sempre: o `.bat` da revisão sobe o GS com o JDK correto e o `javaagent` do bridge. Em BrProject o launcher monta o classpath em Python e chama `java.exe` direto — por isso o classpath gigante não quebra.
+
+Em **ambos** os casos o log do GS deve mostrar `Mod de Voz Dev ALN` / `L2Voice VoIP — Dev ALN`.
 
 ---
 
@@ -189,7 +220,7 @@ Memurai/Redis  →  Login Server  →  L2VoiceServer.exe  →  GameServer
    - UDP **17666** (áudio)
    - TCP **17667** (WebSocket / controle)
 4. Suba na ordem: **Redis** → **Login** → **`L2VoiceServer.exe`** → **GameServer**.
-5. Confirme no log do instalador: `ModVozALN v1.9.44` e `[Pack] OK`.
+5. Confirme no log do instalador: `ModVozALN v1.9.45` e `[Pack] OK`.
 
 ### No PC do jogador (cliente)
 
@@ -233,7 +264,7 @@ audio_profile = receive_only ; nunca transmite
 - [ ] `L2VoiceServer.exe` aberto e sem erro
 - [ ] GameServer com `-javaagent` (instalador injeta nos `.bat`)
 - [ ] Cliente abre via **`L2VoiceInject.exe`**
-- [ ] `VERSION.txt` no ZIP e log do instalador mostram **v1.9.44**
+- [ ] `VERSION.txt` no ZIP e log do instalador mostram **v1.9.45**
 
 ### 3️⃣ No jogo
 
@@ -300,7 +331,7 @@ Ao iniciar o GS, o launcher injeta `JAVA_HOME` e `JAVA_CMD` no ambiente **antes*
 
 ## 🧩 Packs suportadas (auto-detect)
 
-O bridge descobre sozinho **World**, **Player** e **posição** lendo o JAR do GameServer — **sem source** da revisão. O instalador **v1.9.44+** faz o mesmo: lê o `.bat` da pack, escaneia os JARs, **detecta o JDK** e instala `L2GameServer.exe` + `gs-voz-launch.cfg` + `fork.*` para **qualquer** revisão L2J (aCis, L2jMega, Mobius, Frozen, L2Off, BrProject, pack customizada).
+O bridge descobre sozinho **World**, **Player** e **posição** lendo o JAR do GameServer — **sem source** da revisão. O instalador **v1.9.45+** faz o mesmo: lê o `.bat` da pack, escaneia os JARs, **detecta o JDK** e instala `L2GameServer.exe` + `gs-voz-launch.cfg` + `fork.*` para **qualquer** revisão L2J (aCis, L2jMega, Mobius, Frozen, L2Off, BrProject, pack customizada).
 
 | Pack | Suporte |
 |------|---------|
@@ -381,7 +412,7 @@ O <code>voice.ini</code> padrão usa <code>audio_profile = auto</code>. A DLL de
 | 🐙 Releases | [ALN2025/ModVozALN.exe](https://github.com/ALN2025/ModVozALN.exe) |
 | ❌ DM / WhatsApp / pedido de source | **Não atendido** |
 
-Problemas comuns: **JDK errado** (veja [JDK-REQUISITOS.txt](JDK-REQUISITOS.txt)), IP errado, firewall, ZIP antigo na pasta Downloads (apague e baixe de novo), `VERSION.txt` com versão antiga, cliente aberto pelo `L2.exe` em vez do `L2VoiceInject.exe`, Redis parado, **`L2GameServer.exe` antigo** (reinstale com v1.9.44+ para atualizar launcher e `gs-voz-launch.cfg`).
+Problemas comuns: **JDK errado** (veja [JDK-REQUISITOS.txt](JDK-REQUISITOS.txt)), IP errado, firewall, ZIP antigo na pasta Downloads (apague e baixe de novo), `VERSION.txt` com versão antiga, cliente aberto pelo `L2.exe` em vez do `L2VoiceInject.exe`, Redis parado, **`L2GameServer.exe` antigo** (reinstale com v1.9.45+ para atualizar launcher e `gs-voz-launch.cfg`), BrProject sem `launch_mode: java` no cfg (reinstale ou rode `APLICAR-CORRECAO-PACK.bat`).
 
 ---
 
