@@ -4,7 +4,7 @@
 
 **Mod de voz por proximidade para servidores Lineage 2**
 
-[![Versão](https://img.shields.io/badge/versão-1.9.18-7c3aed?style=for-the-badge)](https://github.com/ALN2025/ModVozALN.exe)
+[![Versão](https://img.shields.io/badge/versão-1.9.19-7c3aed?style=for-the-badge)](https://github.com/ALN2025/ModVozALN.exe)
 [![Plataforma](https://img.shields.io/badge/plataforma-Windows-0078d4?style=for-the-badge&logo=windows&logoColor=white)](https://github.com/ALN2025/ModVozALN.exe)
 [![Download](https://img.shields.io/badge/⬇️_download-ModVozALN.zip-ec4899?style=for-the-badge)](https://github.com/ALN2025/ModVozALN.exe/raw/main/ModVozALN.zip)
 [![Dev](https://img.shields.io/badge/Dev-ALN-a855f7?style=for-the-badge)](https://github.com/ALN2025)
@@ -21,12 +21,12 @@
 
 | Arquivo | Descrição |
 |---------|-----------|
-| [**ModVozALN.zip**](https://github.com/ALN2025/ModVozALN.exe/raw/main/ModVozALN.zip) | **Recomendado** — extraia e execute `ModVozALN.exe` (~39 MB) |
+| [**ModVozALN.zip**](https://github.com/ALN2025/ModVozALN.exe/raw/main/ModVozALN.zip) | **Recomendado** — contém `ModVozALN.exe` + `VERSION.txt` (~39 MB) |
 | [ModVozALN.exe](https://github.com/ALN2025/ModVozALN.exe/raw/main/ModVozALN.exe) | Direto (o navegador pode bloquear e deixar arquivos *Não confirmado* em Downloads) |
 
-> ⚠️ Use o **ZIP** se o Chrome/Edge travar o download. Não precisa de pasta `pack/`, código-fonte ou JARs separados.
+> ⚠️ Use o **ZIP** se o Chrome/Edge travar o download. Apague ZIP antigo na pasta Downloads antes de baixar de novo.
 
-> **Como saber se o exe está completo:** tamanho **~39 MB** = pack voice embutido. **~32 MB** = versão antiga **sem** `voice-server` — não instala a pasta voice.
+> **Como saber se baixou a versão certa:** dentro do ZIP, abra `VERSION.txt` — deve mostrar **v1.9.19**. O `ModVozALN.exe` deve ter **~39 MB** (versão antiga ~32 MB não instala voice).
 
 <details>
 <summary><b>Arquivos &quot;Não confirmado&quot; na pasta Downloads?</b></summary>
