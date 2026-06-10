@@ -1,0 +1,152 @@
+================================================================================
+  MOD DE VOZ DEV  |  A.L.N  —  ModVozALN (Instalador L2Voice)
+  ScriptClean Solution  |  v1.9.24
+================================================================================
+
+  Copie a secao "BBCODE" ou "TEXTO SIMPLES" abaixo no topico do L2jBrasil.
+  Quando tiver o video, substitua:  [LINK_DO_VIDEO_AQUI]
+
+
+================================================================================
+  BBCODE — COPIAR E COLAR NO L2JBRASIL
+================================================================================
+
+[center][size=5][b]Mod De Voz Dev ⩿ A.L.N/⪀[/b][/size]
+[size=4][b]ModVozALN — Instalador de voz por proximidade para Lineage 2[/b][/size]
+[i]ScriptClean Solution · Windows · aCis · L2jMega · Mobius · L2Off e mais[/i][/center]
+
+[hr]
+
+[size=3][b]O que e?[/b][/size]
+
+Instalador grafico ([b]ModVozALN.exe[/b]) que coloca o mod de voz completo na sua pack L2J em poucos cliques — [b]sem editar arquivos .java[/b], [b]sem patch no Engine.dll[/b] e [b]sem precisar de source[/b] da revisao.
+
+O jogador fala por [b]proximidade[/b] no mundo do jogo (INSERT = painel · segurar H = falar perto).
+
+[hr]
+
+[size=3][b]Destaques[/b][/size]
+
+[list]
+[*] Instalador GUI com 4 pastas: [b]Game[/b], [b]Libs[/b], [b]Voice[/b], [b]System[/b]
+[*] Detecta automaticamente a revisao da pack (aCis, L2jMega, Mobius, Frozen, L2Off, custom)
+[*] Gera [b]INICIAR-GS-COM-VOZ.bat[/b] com a classe correta do seu GameServer
+[*] [b]javaagent[/b] no bridge — nao mexe no codigo-fonte do GS
+[*] Cliente inicia pelo [b]L2VoiceInject.exe[/b] (Engine.dll intacto)
+[*] Voice-server separado ([b]L2VoiceServer.exe[/b]) + Redis/Memurai
+[/list]
+
+[hr]
+
+[size=3][b]Download oficial[/b][/size]
+
+[b]Recomendado (ZIP):[/b]
+[url=https://github.com/ALN2025/ModVozALN.exe/raw/main/ModVozALN.zip]https://github.com/ALN2025/ModVozALN.exe/raw/main/ModVozALN.zip[/url]
+
+[b]Repositorio / pagina do projeto:[/b]
+[url=https://github.com/ALN2025/ModVozALN.exe]https://github.com/ALN2025/ModVozALN.exe[/url]
+
+[b]Exe direto (se o ZIP falhar no navegador):[/b]
+[url=https://github.com/ALN2025/ModVozALN.exe/raw/main/ModVozALN.exe]https://github.com/ALN2025/ModVozALN.exe/raw/main/ModVozALN.exe[/url]
+
+[i]Dentro do ZIP: ModVozALN.exe + VERSION.txt (confira v1.9.24 · exe ~39 MB)[/i]
+
+[hr]
+
+[size=3][b]Video demonstracao[/b][/size]
+
+[url=[LINK_DO_VIDEO_AQUI]][LINK_DO_VIDEO_AQUI][/url]
+
+[i](Link sera atualizado em breve)[/i]
+
+[hr]
+
+[size=3][b]Como instalar (resumo)[/b][/size]
+
+[list=1]
+[*] Baixe e extraia o [b]ModVozALN.zip[/b]
+[*] Abra [b]ModVozALN.exe[/b]
+[*] Selecione as pastas [b]Game[/b] (game/ ou gameserver/), [b]Libs[/b], [b]Voice[/b] e [b]System[/b] do cliente
+[*] IP do voice: [b]127.0.0.1[/b] (local) ou IP publico (VPS)
+[*] Clique em [b]INSTALAR[/b]
+[*] Suba na ordem: [b]Redis/Memurai[/b] → [b]Login[/b] → [b]L2VoiceServer.exe[/b] → [b]GameServer[/b]
+[*] Entre no jogo pelo [b]L2VoiceInject.exe[/b]
+[/list]
+
+[hr]
+
+[size=3][b]Ordem dos servicos[/b][/size]
+
+[code]Memurai/Redis  →  Login Server  →  L2VoiceServer.exe  →  GameServer  →  L2VoiceInject.exe[/code]
+
+[hr]
+
+[size=3][b]Firewall (VPS / online)[/b][/size]
+
+Libere na maquina do voice-server:
+[list]
+[*] UDP [b]17666[/b] (audio)
+[*] TCP [b]17667[/b] (WebSocket)
+[/list]
+
+[hr]
+
+[size=3][b]Suporte[/b][/size]
+
+Leia o README completo no GitHub antes de instalar. Nao ha suporte individual por DM/WhatsApp — toda a documentacao esta no repositorio.
+
+[center]
+[b]Dev ALN[/b] · ModVozALN / L2Voice
+[url=https://scriptclean.com.br]scriptclean.com.br[/url]
+[i]© 2026 — Distribuicao publica via instalador[/i]
+[/center]
+
+
+================================================================================
+  TEXTO SIMPLES — ALTERNATIVA (se o forum nao usar BBCODE)
+================================================================================
+
+[TITULO DO TOPICO]
+Mod De Voz Dev A.L.N — ModVozALN | Voz por proximidade L2J (instalador gratis)
+
+---
+
+Mod De Voz Dev ⩿ A.L.N/⪀
+ModVozALN — Instalador de voz por proximidade para Lineage 2
+ScriptClean Solution · v1.9.24
+
+O QUE E
+-------
+Instalador grafico (ModVozALN.exe) que instala o mod de voz completo na sua pack
+L2J em poucos cliques — sem editar .java, sem patch no Engine.dll e sem source.
+
+DESTAQUES
+---------
+• Instalador GUI: Game, Libs, Voice, System
+• Auto-detecta a revisao (aCis, L2jMega, Mobius, Frozen, L2Off, packs custom)
+• Gera INICIAR-GS-COM-VOZ.bat com a main class correta
+• javaagent (l2voice-bridge.jar) — GameServer sem alterar codigo
+• Cliente: L2VoiceInject.exe (Engine.dll nao e alterado)
+• Voice-server: L2VoiceServer.exe + Redis/Memurai
+
+DOWNLOAD
+--------
+ZIP (recomendado):
+https://github.com/ALN2025/ModVozALN.exe/raw/main/ModVozALN.zip
+
+Repositorio:
+https://github.com/ALN2025/ModVozALN.exe
+
+VIDEO
+-----
+[LINK_DO_VIDEO_AQUI]
+
+COMO USAR
+---------
+1. Extraia ModVozALN.zip e abra ModVozALN.exe
+2. Preencha Game, Libs, Voice e System
+3. Instale
+4. Redis → Login → L2VoiceServer.exe → GameServer
+5. Entre pelo L2VoiceInject.exe
+
+Dev ALN · scriptclean.com.br
