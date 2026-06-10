@@ -28,6 +28,16 @@
 
 > **Como saber se baixou a versão certa:** dentro do ZIP, abra `VERSION.txt` — deve mostrar **v1.9.19**. O `ModVozALN.exe` deve ter **~39 MB** (versão antiga ~32 MB não instala voice).
 
+### Conteúdo do ZIP (v1.9.19)
+
+| Arquivo | Função |
+|---------|--------|
+| `ModVozALN.exe` | Instalador GUI (~39 MB) |
+| `VERSION.txt` | Confirma a versão baixada |
+| `LEIA-ME-DOWNLOAD.txt` | Instruções rápidas após extrair |
+
+Ao abrir o instalador, a splash mostra **ScriptClean** · **Modo de voz ALN** (ícone menor). O título da janela deve exibir **`v1.9.19`**.
+
 <details>
 <summary><b>Arquivos &quot;Não confirmado&quot; na pasta Downloads?</b></summary>
 
@@ -39,13 +49,14 @@ O navegador interrompeu o download do `.exe` (proteção do Windows). Pode **apa
 
 ## ✨ O que o instalador faz
 
-| Componente | Instala automaticamente |
-|------------|-------------------------|
-| 🖥️ **GameServer** | `l2jalnvoice.properties`, HTML, `INICIAR-GS-COM-VOZ.bat` |
-| 📚 **Libs** | `l2voice-bridge.jar`, `jedis-5.1.2.jar` |
-| 🔧 **Scripts** | Injeta `-javaagent` nos `.bat` existentes — **sem editar `.java`** |
-| 🎮 **Cliente L2** | `l2voice.dll`, `voice.ini`, `L2VoiceInject.exe` |
-| 📡 **Voice-server** | `L2VoiceServer.exe`, `voice-server.exe`, scripts de inicialização |
+| Campo | Instala automaticamente |
+|-------|-------------------------|
+| 🖥️ **Game** | `l2jalnvoice.properties`, HTML, docs, `INICIAR-GS-COM-VOZ.bat` |
+| 📚 **Libs** | `l2voice-bridge.jar`, `jedis-5.1.2.jar`, `-javaagent` nos `.bat` |
+| 📡 **Voice** | `L2VoiceServer.exe`, `voice-server.exe`, scripts |
+| 🎮 **System** | `l2voice.dll`, `voice.ini`, `L2VoiceInject.exe` |
+
+Tudo **sem editar `.java`** e **sem patch no `Engine.dll`**.
 
 ---
 
@@ -175,7 +186,7 @@ Memurai/Redis  →  Login Server  →  L2VoiceServer.exe  →  GameServer
    - UDP **17666** (áudio)
    - TCP **17667** (WebSocket / controle)
 4. Suba na ordem: **Redis** → **Login** → **`L2VoiceServer.exe`** → **GameServer**.
-5. Confirme no log do instalador: `ModVozALN v1.9.14` e `[Pack] OK`.
+5. Confirme no log do instalador: `ModVozALN v1.9.19` e `[Pack] OK`.
 
 ### No PC do jogador (cliente)
 
@@ -219,7 +230,7 @@ audio_profile = receive_only ; nunca transmite
 - [ ] `L2VoiceServer.exe` aberto e sem erro
 - [ ] GameServer com `-javaagent` (instalador injeta nos `.bat`)
 - [ ] Cliente abre via **`L2VoiceInject.exe`**
-- [ ] Log do instalador mostra **v1.9.14**
+- [ ] `VERSION.txt` no ZIP e log do instalador mostram **v1.9.19**
 
 ### 3️⃣ No jogo
 
@@ -324,7 +335,7 @@ O <code>voice.ini</code> padrão usa <code>audio_profile = auto</code>. A DLL de
 | 🐙 Releases | [ALN2025/ModVozALN.exe](https://github.com/ALN2025/ModVozALN.exe) |
 | ❌ DM / WhatsApp / pedido de source | **Não atendido** |
 
-Problemas comuns: IP errado, firewall, exe antigo do GitHub, cliente aberto pelo `L2.exe` em vez do `L2VoiceInject.exe`, Redis parado.
+Problemas comuns: IP errado, firewall, ZIP antigo na pasta Downloads (apague e baixe de novo), `VERSION.txt` com versão antiga, cliente aberto pelo `L2.exe` em vez do `L2VoiceInject.exe`, Redis parado.
 
 ---
 
